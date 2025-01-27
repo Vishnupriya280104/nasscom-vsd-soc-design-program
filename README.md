@@ -38,8 +38,8 @@ Screenshots of the operations
   <summary>Sky130-Day2: Chip Floor planning considerations, Library Binding and Placement, Cell design and characterizatio flows, General timing characterization parameters.</summary>
   1.Run floorplan using openlane and steps to view floorplan
   Commands to review floorplan layout in Magic
-![run_fp](https://github.com/user-attachments/assets/9d9326db-f332-48d2-9441-ea1ff53c9ab6)
-![run_fp2](https://github.com/user-attachments/assets/fb49396e-b79f-451c-8e69-85e5fa8d58cc)
+  ![run_fp](https://github.com/user-attachments/assets/9d9326db-f332-48d2-9441-ea1ff53c9ab6)
+  ![run_fp2](https://github.com/user-attachments/assets/fb49396e-b79f-451c-8e69-85e5fa8d58cc)
 ```bash
   #Change directory to path containing generated floorplan def
   $ cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/27-01_18- 
@@ -48,13 +48,13 @@ Screenshots of the operations
   #Command to load the floorplan def in magic tool
   magic -T home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.floorplan.def &
 ```
-![fp](https://github.com/user-attachments/assets/fc4c04f1-ff62-4d7e-ab98-1632f4789374)
-![fp_port_layer_in_config](https://github.com/user-attachments/assets/052d4db7-9083-4d15-b84f-7b48131d0bd4)
+  ![fp](https://github.com/user-attachments/assets/fc4c04f1-ff62-4d7e-ab98-1632f4789374)
+  ![fp_port_layer_in_config](https://github.com/user-attachments/assets/052d4db7-9083-4d15-b84f-7b48131d0bd4)
 
  
   2.Congestion aware placement using RePlAce
-![run_pc](https://github.com/user-attachments/assets/ef81ef61-3a60-403e-91a1-a43851219e3f)
-![run_pc2](https://github.com/user-attachments/assets/6ab74807-6bf1-47e8-84e3-e136890711cd)
+  ![run_pc](https://github.com/user-attachments/assets/ef81ef61-3a60-403e-91a1-a43851219e3f)
+  ![run_pc2](https://github.com/user-attachments/assets/6ab74807-6bf1-47e8-84e3-e136890711cd)
   Commands to run placement using RePlAce
 ```bash
   #Change directory to path containing generated placement def
