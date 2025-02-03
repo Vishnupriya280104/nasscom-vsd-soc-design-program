@@ -103,17 +103,17 @@ Screenshots of the operations
 
 ![cmos_layout_command](https://github.com/user-attachments/assets/402e1da1-ffab-4b8f-9082-652c77168924)
 
-CMOS layout  
+  CMOS layout  
 ![cmos_layout](https://github.com/user-attachments/assets/82aac6c2-1a37-4dee-8065-c25a349ecfcc)
-NMOS
+  NMOS
 ![nmos](https://github.com/user-attachments/assets/022da420-49eb-4d3e-b0b8-6ab0b81bdf96)
-PMOS
+  PMOS
 ![pmos](https://github.com/user-attachments/assets/7549b7fb-ea4f-400a-8036-4c4704607fe0)
-Y connectivity to PMOS and NMOS drain  
+  Y connectivity to PMOS and NMOS drain  
 ![nmos_ _pmos_drain](https://github.com/user-attachments/assets/9b08d842-1dbe-48dc-8ab9-b1e975b73f25)
-VDD(VPWR)
+  VDD(VPWR)
 ![connected_to_vdd](https://github.com/user-attachments/assets/23c5111d-6049-43dc-a275-9c176e986a95)
-VSS(VGND)  
+  VSS(VGND)  
 ![connected_to_vss](https://github.com/user-attachments/assets/b1bbb857-dcd5-4846-803c-1a84e1362b49)
 
   2.Spice extraction of inverter in magic.  
@@ -137,7 +137,7 @@ Spice file
 
   3.Editing the spice model file for analysis through simulation.
   Edited spice file  
-![create_spice_file](https://github.com/user-attachments/assets/a8cde3c9-a3a6-4e9d-96e7-ba7d57aba040)  
+![spice_file (2)](https://github.com/user-attachments/assets/bc559ae5-feca-48cb-8d67-151382265256)
 
   4.Ngspice simulation
   Commands for ngspice simulation
