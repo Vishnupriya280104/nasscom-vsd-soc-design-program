@@ -132,9 +132,9 @@ Screenshots of the operations
   ext2spice
 ```
 ![create_spice_file](https://github.com/user-attachments/assets/5fdc75fa-211d-4a14-8ded-1285fb1c59a1)  
-Spice file  
-![spice_file](https://github.com/user-attachments/assets/99f66866-adc1-4f24-ae74-c0d9303edbac)  
-
+  Spice file  
+![spice_file (3)](https://github.com/user-attachments/assets/cb2c0dc4-826f-4e8d-a285-57b8135bff38)
+  
   3.Editing the spice model file for analysis through simulation.
   Edited spice file  
 ![spice_file (2)](https://github.com/user-attachments/assets/bc559ae5-feca-48cb-8d67-151382265256)
