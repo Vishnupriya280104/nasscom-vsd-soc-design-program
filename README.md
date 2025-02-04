@@ -598,7 +598,7 @@ Commands to load placement def in magic in another terminal
 
 </details>
 
-# Acknowledgements
-**Kunal Ghosh**, Co-founder, VSD Corp. Pvt. Ltd.
-**Nickson P Jose**, Physical Design Engineer, Intel Corporation.
-**R. Timothy Edwards**, Senior Vice President of Analog and Design, efabless Corporation.
+# Acknowledgements  
+**Kunal Ghosh**, Co-founder, VSD Corp. Pvt. Ltd.  
+**Nickson P Jose**, Physical Design Engineer, Intel Corporation.  
+**R. Timothy Edwards**, Senior Vice President of Analog and Design, efabless Corporation.  
