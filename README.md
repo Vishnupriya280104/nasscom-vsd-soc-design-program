@@ -246,3 +246,209 @@ Screenshots of the operations
 ```
 
 </details>
+
+<details>
+  <summary>Sky130-Day-4: Timing modelling using delay tables. Timing analysis with ideal clocks using openSTA. Clock tree synthesis TritonCTS and signal integrity. Timing analysis with  real clocks using openSTA</summary>
+  1. Fix up small DRC errors and verify the design is ready to be inserted into our flow.
+  Commands to open the custom inverter layout
+  
+```bash
+  #Change directory to vsdstdcelldesign
+  cd Desktop/work/tools/openlane_working_dir/openlane/vsdstdcelldesign
+
+  #Command to open custom inverter layout in magic
+  magic -T sky130A.tech sky130_inv.mag &
+```
+
+![2_tracks_info](https://github.com/user-attachments/assets/71258c28-989c-4749-b516-aa5273f9eef1)  
+
+  Commands for tkcon window to set grid as tracks of locali layer
+
+```bash
+  #Get syntax for grid command
+  help grid
+
+  #Set grid values accordingly
+  grid 0.46um 0.34um 0.23um 0.17um
+```
+![3](https://github.com/user-attachments/assets/1d4db088-b744-445e-9068-e9afeb8ed090)  
+
+  Def_port layer
+![4_def_port_layer](https://github.com/user-attachments/assets/5a48e68f-89df-4e0d-a74b-e64cb68dd7ef)  
+
+  Command for tkcon window to save the layout with custom name
+  
+```bash
+  #Command to save as
+  save sky130_vsdinv.mag
+
+  #Command to open custom inverter layout in magic
+  magic -T sky130A.tech sky130_vsdinv.mag &
+```
+
+![1](https://github.com/user-attachments/assets/c63f4ea8-a284-4484-bfcd-e8b325c07a6a)  
+
+  Lef file  
+![5_lef](https://github.com/user-attachments/assets/b6f7be5a-d984-4b13-9f40-62f6a4a0ddeb)  
+
+  2.Run openlane flow synthesis with newly inserted custom inverter cell.  
+Commands to invoke the OpenLANE flow include new lef and perform synthesis  
+
+```bash
+  #Change directory to openlane flow directory
+  cd Desktop/work/tools/openlane_working_dir/openlane
+
+  #alias docker='docker run -it -v $(pwd):/openLANE_flow -v $PDK_ROOT:$PDK_ROOT -e  PDK_ROOT=$PDK_ROOT -u $(id -u $USER):$(id -g $USER) efabless/openlane:v0.21'
+  #Since we have aliased the long command to 'docker' we can invoke the OpenLANE flow docker sub-system by just running this command
+  docker
+  #Now that we have entered the OpenLANE flow contained docker sub-system we can invoke the OpenLANE flow in the Interactive mode using the following command
+  ./flow.tcl -interactive
+
+  #Now that OpenLANE flow is open we have to input the required packages for proper functionality of the OpenLANE flow
+  package require openlane 0.9
+
+  #Now the OpenLANE flow is ready to run any design and initially we have to prep the design creating some necessary files and directories for running a specific design which in our case is 'picorv32a'
+  prep -design picorv32a
+
+  #Adiitional commands to include newly added lef to openlane flow
+  set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
+  add_lefs -src $lefs
+
+  #Now that the design is prepped and ready, we can run synthesis using following command
+  run_synthesis
+```
+
+![6](https://github.com/user-attachments/assets/ce3e0fb0-c1b4-4e0e-b8e2-8634011bc313)
+![7](https://github.com/user-attachments/assets/e87e4f1e-c5ca-49db-85ae-7fe72b1e4851)
+
+  3.Remove/reduce the newly introduced violations with the introduction of custom inverter cell by modifying design parameters.  
+![9_chiparea](https://github.com/user-attachments/assets/2d97ffc8-ed09-4325-a52d-98450afcebd5)  
+
+  Commands to view and change parameters to improve timing and run synthesis
+```bash
+  # Command to display current value of variable SYNTH_STRATEGY
+  echo $::env(SYNTH_STRATEGY)
+
+  #Command to set new value for SYNTH_STRATEGY
+  set ::env(SYNTH_STRATEGY) "DELAY 3"
+
+  #Command to display current value of variable SYNTH_BUFFERING to check whether it's enabled
+  echo $::env(SYNTH_BUFFERING)
+
+  #Command to display current value of variable SYNTH_SIZING
+  echo $::env(SYNTH_SIZING)
+
+  #Command to set new value for SYNTH_SIZING
+  set ::env(SYNTH_SIZING) 1
+
+  #Command to display current value of variable SYNTH_DRIVING_CELL to check whether it's the proper cell or not
+  echo $::env(SYNTH_DRIVING_CELL)
+
+  #Now that the design is prepped and ready, we can run synthesis using following command
+  run_synthesis
+```
+
+![8](https://github.com/user-attachments/assets/93c96605-368d-456d-9d22-844d24b1e5b5)  
+![10](https://github.com/user-attachments/assets/f23b6f3c-31ba-4d9e-ae40-a6f26a9beca8)  
+
+Commands to load placement def in magic in another terminal
+
+```bash
+  #Change directory to path containing generated placement def
+  cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/24-03_10-03/results/placement/
+
+  #Command to load the placement def in magic tool
+  magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.placement.def &
+```
+
+![11](https://github.com/user-attachments/assets/9e68ef74-2463-43ce-b579-603c157c3bb2)
+![12](https://github.com/user-attachments/assets/fd268ad7-8726-4b62-a259-45cf681562b2)  
+
+  Command for tkcon window to view internal layers of cells
+
+```bash
+  #Command to view internal connectivity layers
+  expand
+```
+
+![13](https://github.com/user-attachments/assets/480afabe-a63b-4dca-82e2-cac072f48b2c)
+![14](https://github.com/user-attachments/assets/895a93ed-5515-4d72-ad61-5dc297f6d2d1)  
+
+  4.Do Post-Synthesis timing analysis with OpenSTA tool.  
+  Commands to invoke the OpenLANE flow include new lef and perform synthesis
+```bash
+  #Change directory to openlane flow directory
+  cd Desktop/work/tools/openlane_working_dir/openlane
+
+  #Since we have aliased the long command to 'docker' we can invoke the OpenLANE flow docker sub-system by just running this command
+  docker
+  #Now that we have entered the OpenLANE flow contained docker sub-system we can invoke the OpenLANE flow in the Interactive mode using the following command
+  ./flow.tcl -interactive
+
+  #Now that OpenLANE flow is open we have to input the required packages for proper functionality of the OpenLANE flow
+  package require openlane 0.9
+
+  #Now the OpenLANE flow is ready to run any design and initially we have to prep the design creating some necessary files and directories for running a specific design which in our case is 'picorv32a'
+  prep -design picorv32a
+
+  #Command to set new value for SYNTH_SIZING
+  set ::env(SYNTH_SIZING) 1
+
+  #Now that the design is prepped and ready, we can run synthesis using following command
+  run_synthesis
+```
+
+  Newly created pre_sta.conf for STA analysis in openlane directory
+![15](https://github.com/user-attachments/assets/66f4c70a-b0a1-41ff-8e08-f0109e0ab40b)  
+
+  Newly created my_base.sdc for STA analysis in openlane/designs/picorv32a/src directory based on the file openlane/scripts/base.sdc
+![16](https://github.com/user-attachments/assets/87e0e195-6740-4fbc-84ac-24ab86742427)  
+
+  Commands to run STA in another terminal
+
+```bash
+  #Change directory to openlane
+  cd Desktop/work/tools/openlane_working_dir/openlane
+
+  #Command to invoke OpenSTA tool with script
+  sta pre_sta.conf
+```
+
+![17](https://github.com/user-attachments/assets/e8dbff08-c7bb-45b8-a4f4-2eb58dafc5ca)
+![18](https://github.com/user-attachments/assets/13991cd5-5a9b-4b45-9db4-e60e97c4bfb0)
+![19](https://github.com/user-attachments/assets/1490147b-04d8-49dc-8738-90acb59ae6b8)
+![20](https://github.com/user-attachments/assets/994437fa-1353-4704-940a-c14871ce73ad)  
+
+  Commands to write verilog
+
+```bash
+  #Check syntax
+  help write_verilog
+
+  #Overwriting current synthesis netlist
+  write_verilog /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/25-03_18-52/results/synthesis/picorv32a.synthesis.v
+
+  #Exit from OpenSTA since timing analysis is done
+  exit
+```
+
+![21](https://github.com/user-attachments/assets/a038f772-36ed-413f-944d-5d97dd0d28aa)  
+
+```bash
+  # Now we are ready to run placement
+  run_placement
+
+  #With placement done we are now ready to run CTS
+  run_cts
+```
+
+![23](https://github.com/user-attachments/assets/9431e790-45a0-4bb2-bcfc-8d0cd6c7d8db)
+![24](https://github.com/user-attachments/assets/832ea0f9-2826-4aca-bf80-3b6f1267a2b3)
+![25](https://github.com/user-attachments/assets/e95818a9-fa44-4acb-a077-290fc1201d3d)
+![26](https://github.com/user-attachments/assets/5863f01e-6583-4f06-be08-3e4fc1c8dd19)
+![27](https://github.com/user-attachments/assets/2d0adb2f-2b27-4006-9ae1-b6e5fd2ecd7d)
+![28](https://github.com/user-attachments/assets/8819bfe3-3a5a-4a3f-a41c-9427c1a51c80)
+![29](https://github.com/user-attachments/assets/7bff2b55-73b4-4a71-bc94-d7e3d2478ef6)
+
+
+</details>
