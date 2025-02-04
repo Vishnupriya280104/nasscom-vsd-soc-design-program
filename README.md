@@ -355,7 +355,7 @@ Commands to load placement def in magic in another terminal
 
 ```bash
   #Change directory to path containing generated placement def
-  cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/27-01_10-03/results/placement/
+  cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/27-01_18-04/results/placement/
 
   #Command to load the placement def in magic tool
   magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.placement.def &
@@ -426,7 +426,7 @@ Commands to load placement def in magic in another terminal
   help write_verilog
 
   #Overwriting current synthesis netlist
-  write_verilog /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/25-03_18-52/results/synthesis/picorv32a.synthesis.v
+  write_verilog /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/27-01_18-04/results/synthesis/picorv32a.synthesis.v
 
   #Exit from OpenSTA since timing analysis is done
   exit
